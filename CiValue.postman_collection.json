@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "324ffc32-286b-4240-87f6-bba9e5f2ab13",
+		"name": "CiValue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1223726"
+	},
+	"item": [
+		{
+			"name": "shoppers by prod id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ecommerce/shoppers/PR-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce",
+						"shoppers",
+						"PR-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products by filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ecommerce/products/SH-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ecommerce",
+						"products",
+						"SH-1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

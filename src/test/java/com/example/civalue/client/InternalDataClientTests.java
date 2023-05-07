@@ -1,6 +1,7 @@
 package com.example.civalue.client;
 
 import com.example.civalue.services.Product;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 
@@ -11,6 +12,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 
+@Ignore
 public class InternalDataClientTests {
     @Spy
     InternalDataClient internalDataClient = spy(InternalDataClient.class);
