@@ -2,7 +2,6 @@ package com.example.civalue.client;
 
 import com.example.civalue.services.Product;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Spy;
 
 import java.util.List;

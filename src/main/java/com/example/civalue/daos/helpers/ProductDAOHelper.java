@@ -5,7 +5,7 @@ import com.example.civalue.services.Product;
 
 
 public class ProductDAOHelper {
-    public static ProductDAO convertAllCastToDAO(Product product) {
+    public static ProductDAO convertProductToDAO(Product product) {
         ProductDAO productDAO = new ProductDAO();
         productDAO.setProductId(product.getProductId());
         productDAO.setBrand(product.getBrand());

@@ -1,11 +1,9 @@
 package com.example.civalue.services;
 
 import com.example.civalue.client.InternalDataClient;
-import com.example.civalue.daos.ProductDAO;
 import com.example.civalue.daos.helpers.ProductDAOHelper;
 import com.example.civalue.pojos.ProductFilters;
 import com.example.civalue.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -14,11 +12,10 @@ import java.util.List;
 @Service
 public class Product {
     private String productId;
-    private Long relevancyScore;
+    private Double relevancyScore;
     private String category; // can be ENUM
     private String brand; // can be ENUM
 
-    @Autowired
     InternalDataClient internalDataClient;
     ProductRepository productRepository;
 
@@ -35,13 +32,18 @@ public class Product {
 
     public Product(){}
 
+    public Product(String productId, Double relevancyScore) {
+        this.productId = productId;
+        this.relevancyScore = relevancyScore;
+    }
+
     public List<Product> getMatchingProducts(ProductFilters productFilters, int limit) {
         return Collections.emptyList();
     }
 
     public void saveProductMeta(String productId) {
         Product toSave = this.internalDataClient.getProductMeta(productId);
-        this.productRepository.save(ProductDAOHelper.convertAllCastToDAO(toSave));
+        this.productRepository.save(ProductDAOHelper.convertProductToDAO(toSave));
     }
 
     public String getProductId() {
@@ -52,11 +54,11 @@ public class Product {
         this.productId = productId;
     }
 
-    public Long getRelevancyScore() {
+    public Double getRelevancyScore() {
         return relevancyScore;
     }
 
-    public void setRelevancyScore(Long relevancyScore) {
+    public void setRelevancyScore(Double relevancyScore) {
         this.relevancyScore = relevancyScore;
     }
 
