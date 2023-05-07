@@ -21,7 +21,7 @@ public class EcommerceController {
         this.shopper = shopper;
     }
 
-    @GetMapping("/{shopperId}")
+    @GetMapping("products/{shopperId}")
     public ResponseEntity<List<Product>> getProductsByShopper(@PathVariable String shopperId,
                                                               @RequestParam(required = false) String category,
                                                               @RequestParam(required = false) String brand,
@@ -33,7 +33,7 @@ public class EcommerceController {
                 .body(response);
     }
 
-    @GetMapping("/{productId}")
+    @GetMapping("shoppers/{productId}")
     public ResponseEntity<List<Shopper>> getShoppersByProduct(@PathVariable String productId,
                                                               @RequestParam(required = false, defaultValue = "10") int limit) {
         List<Shopper> response = this.shopper.getShoppersByProductId(productId, limit);
