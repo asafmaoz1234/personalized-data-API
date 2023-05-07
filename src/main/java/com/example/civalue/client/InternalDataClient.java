@@ -10,13 +10,17 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class internalDataClient {
+public class InternalDataClient {
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String baseUrl = "https://api.example.com";
+
+    protected String getUrl(String postfix, String id) {
+        String baseUrl = "https://api.example.com";
+        return baseUrl + "/" + postfix + "/" + id;
+    }
 
     public List<Product> getShopperProductsData(String shopperId) {
         ResponseEntity<ShopperProducts> response = this.restTemplate.
-                getForEntity(this.baseUrl + "/shopperData/" + shopperId,
+                getForEntity(this.getUrl("shopperData", shopperId),
                         ShopperProducts.class);
         return Objects.requireNonNull(response.getBody())
                 .getShelf();
@@ -24,7 +28,7 @@ public class internalDataClient {
 
     public Product getProductMeta(String productId) {
         ResponseEntity<Product> response = this.restTemplate.
-                getForEntity(this.baseUrl + "/productData/" + productId,
+                getForEntity(this.getUrl("productData", productId),
                         Product.class);
         return response.getBody();
     }

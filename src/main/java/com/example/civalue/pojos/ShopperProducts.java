@@ -8,10 +8,7 @@ public class ShopperProducts {
     private String shopperId;
     private List<Product> shelf;
 
-    public ShopperProducts(String shopperId, List<Product> shelf) {
-        this.shopperId = shopperId;
-        this.shelf = shelf;
-    }
+    public ShopperProducts() {}
 
     public String getShopperId() {
         return shopperId;
