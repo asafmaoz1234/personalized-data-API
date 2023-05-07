@@ -1,12 +1,14 @@
 package com.example.civalue.services;
 
 import com.example.civalue.client.InternalDataClient;
+import com.example.civalue.daos.ProductDAO;
 import com.example.civalue.daos.helpers.ProductDAOHelper;
 import com.example.civalue.pojos.ProductFilters;
 import com.example.civalue.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,13 +18,10 @@ public class Product {
     private String category; // can be ENUM
     private String brand; // can be ENUM
 
+    @Autowired
     InternalDataClient internalDataClient;
+    @Autowired
     ProductRepository productRepository;
-
-    public Product(InternalDataClient internalDataClient, ProductRepository productRepository) {
-        this.internalDataClient = internalDataClient;
-        this.productRepository = productRepository;
-    }
 
     public Product(String productId, String category, String brand) {
         this.productId = productId;
@@ -38,7 +37,11 @@ public class Product {
     }
 
     public List<Product> getMatchingProducts(ProductFilters productFilters, int limit) {
-        return Collections.emptyList();
+        List<ProductDAO> productDAOS = this.productRepository.getShopperProducts(productFilters.getShopperId(), limit);
+        List<Product> response = new ArrayList<>();
+        productDAOS.forEach(productDAO ->
+                response.add(new Product(productDAO.getProductId(), productDAO.getCategory(), productDAO.getBrand())));
+        return response;
     }
 
     public void saveProductMeta(String productId) {
