@@ -13,7 +13,7 @@ public class ProductDAO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "product_id") //index
+    @Column(name = "product_id") //unique index
     private String productId;
     @Column(name = "category")
     private String category;
